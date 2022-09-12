@@ -53,14 +53,11 @@ function messageCreate(title, text, timestamp, cb) {
     text: text,
     timestamp: timestamp,
   });
-  message.save(function (err) {
-    if (err) {
-      cb(err, null);
-      return;
-    }
+  message.save((err) => {
+    if (err) return cb(err, null);
     console.log("New Message: " + message);
     messages.push(message);
-    cb(null, message);
+    return cb(null, message);
   });
 }
 
@@ -68,10 +65,10 @@ function createUsers(cb) {
   async.series(
     [
       function (callback) {
-        massageCreate("Krystian", "przykładowy tekst", false, false, callback);
+        userCreate("Krystian", "Krystian", false, false, callback);
       },
       function (callback) {
-        messageCreate("Paweł", "Paweł", false, false, callback);
+        userCreate("Patrick", "Patrick", false, false, callback);
       },
     ],
     // optional callback
