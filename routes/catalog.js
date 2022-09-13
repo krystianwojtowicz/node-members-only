@@ -5,29 +5,14 @@ var router = express.Router();
 const message_controller = require("../controllers/messageController");
 const user_controller = require("../controllers/userController");
 
-/// ------------------------------ HOMEPAGE ------------------------------ ///
-router.get("/", index_controller.index);
-router.post("/", message_controller.delete_message_post);
-
-/// ------------------------------ SIGNUP ------------------------------ ///
-router.get("/sign-up", auth_controller.signup_get);
-router.post("/sign-up", auth_controller.signup_post);
-
-/// ------------------------------ LOGIN/LOGOUT ------------------------------ ///
-router.get("/log-in", auth_controller.login_get);
-router.post("/log-in", auth_controller.login_post);
-router.get("/log-out", auth_controller.logout_get);
-
+// GET catalog home page.
+router.get("/", user_controller.index);
 /// ------------------------------ BECOME A MEMBER ------------------------------ ///
-router.get("/member", user_controller.member_get);
-router.post("/member", user_controller.member_post);
+router.get("/member", user_controller.user_create_get);
+router.post("/member", user_controller.user_create_post);
 
 /// ------------------------------ CREATE A MESSAGE ------------------------------ ///
-router.get("/create-message", message_controller.create_message_get);
-router.post("/create-message", message_controller.create_message_post);
-
-/// ------------------------------ BECOME AN ADMIN ------------------------------ ///
-router.get("/admin", user_controller.admin_get);
-router.post("/admin", user_controller.admin_post);
+router.get("/create-message", message_controller.message_create_get);
+router.post("/create-message", message_controller.message_create_post);
 
 module.exports = router;
