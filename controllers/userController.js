@@ -1,6 +1,7 @@
 const User = require("../models/user");
 const Message = require("../models/message");
 const { body, validationResult } = require("express-validator");
+const bcrypt = require("bcryptjs");
 
 // exports.index = (req, res) => {
 //   res.send("NOT IMPLEMENTED: Site Home Page");
@@ -54,11 +55,12 @@ exports.user_create_post = [
   (req, res, next) => {
     // Extract the validation errors from a request.
     const errors = validationResult(req);
+    const hash = bcrypt.hashSync(req.body.password, 10);
 
     // Create a user object with escaped and trimmed data.
     const user = new User({
       username: req.body.username,
-      password: req.body.password,
+      password: hash,
       member: req.body.member,
       admin: req.body.admin,
     });
@@ -71,32 +73,7 @@ exports.user_create_post = [
         errors: errors.array(),
       });
       return;
-    }
-
-    // {
-    //   // Data from form is valid.
-    //   // Check if User with same name already exists.
-    //   User.findOne({ name: req.body.name }).exec((err, found_user) => {
-    //     if (err) {
-    //       return next(err);
-    //     }
-
-    //     if (found_user) {
-    //       // // User exists, redirect to its detail page.
-    //       // res.redirect(found_genre.url);
-    //       res.redirect(found_user.url);
-    //     } else {
-    //       user.save((err) => {
-    //         if (err) {
-    //           return next(err);
-    //         }
-    //         // User saved. Redirect to genre detail page.
-    //         // res.redirect("/");
-    //       });
-    //     }
-    //   });
-    // }
-    else {
+    } else {
       // Data from form is valid.
       // Check if User with same name already exists.
       User.findOne({ username: req.body.username }).exec((err, found_user) => {
@@ -121,27 +98,3 @@ exports.user_create_post = [
     }
   },
 ];
-//       // Data from form is valid.
-//       // Check if User with same name already exists.
-//       // User.findOne({ name: req.body.name }).exec((err, found_user) => {
-//       // if (err) {
-//       //   return next(err);
-//       // }
-
-//       // if (found_user) {
-//       //   // // User exists, redirect to its detail page.
-//       //   // res.redirect(found_genre.url);
-//       //   res.redirect(found_user.url);
-//       // } else {
-//       user.save((err) => {
-//         if (err) {
-//           return next(err);
-//         }
-//         // User saved. Redirect to genre detail page.
-//         res.redirect("/");
-//       });
-//       // }
-//       // });
-//     }
-//   },
-// ];
