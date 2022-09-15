@@ -48,7 +48,7 @@ exports.user_create_get = (req, res, next) => {
 exports.user_create_post = [
   // Validate and sanitize the name field.
   body("username", "Username required").trim().isLength({ min: 1 }).escape(),
-  body("password", "Password required").trim().isLength({ min: 1 }).escape(),
+  body("password", "Password required").isLength({ min: 1 }).escape(),
 
   // Process request after validation and sanitization.
   (req, res, next) => {
