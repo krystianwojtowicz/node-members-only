@@ -47,7 +47,8 @@ exports.user_create_get = (req, res, next) => {
 // Handle User create on POST.
 exports.user_create_post = [
   // Validate and sanitize the name field.
-  body("username", "User required").trim().isLength({ min: 1 }).escape(),
+  body("username", "Username required").trim().isLength({ min: 1 }).escape(),
+  body("password", "Password required").trim().isLength({ min: 1 }).escape(),
 
   // Process request after validation and sanitization.
   (req, res, next) => {
@@ -57,9 +58,9 @@ exports.user_create_post = [
     // Create a user object with escaped and trimmed data.
     const user = new User({
       username: req.body.username,
-      // password: req.body.password,
-      // member: req.body.member,
-      // admin: req.body.admin,
+      password: req.body.password,
+      member: req.body.member,
+      admin: req.body.admin,
     });
 
     if (!errors.isEmpty()) {
@@ -113,7 +114,7 @@ exports.user_create_post = [
           return next(err);
         }
         // User saved. Redirect to genre detail page.
-        // res.redirect("/");
+        res.redirect("/");
       });
       // }
       // });
