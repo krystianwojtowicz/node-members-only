@@ -21,7 +21,7 @@ exports.index = (req, res) => {
     },
     (err, results) => {
       res.render("index", {
-        title: "Members only",
+        title: "Local Library Home",
         error: err,
         data: results,
       });
@@ -107,7 +107,7 @@ exports.user_create_post = [
         if (found_user) {
           // // User exists, redirect to its detail page.
           // res.redirect(found_genre.url);
-          res.redirect("/catalog/user/create");
+          res.redirect("/");
         } else {
           user.save((err) => {
             if (err) {
