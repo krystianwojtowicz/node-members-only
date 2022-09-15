@@ -68,7 +68,7 @@ exports.user_create_post = [
     const user = new User({
       username: req.body.username,
       password: hash,
-      confirmPassword: req.body.confirmPassword,
+      confirmPassword: hash,
       member: req.body.member,
       admin: req.body.admin,
     });
