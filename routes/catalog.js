@@ -8,11 +8,11 @@ const user_controller = require("../controllers/userController");
 // GET catalog home page.
 router.get("/", user_controller.index);
 /// ------------------------------ BECOME A MEMBER ------------------------------ ///
-router.get("/member", user_controller.user_create_get);
-router.post("/member", user_controller.user_create_post);
+router.get("/user/create", user_controller.user_create_get);
+router.post("/user/create", user_controller.user_create_post);
 
 /// ------------------------------ CREATE A MESSAGE ------------------------------ ///
-router.get("/create-message", message_controller.message_create_get);
-router.post("/create-message", message_controller.message_create_post);
+router.get("/message/create", message_controller.message_create_get);
+router.post("/message/create", message_controller.message_create_post);
 
 module.exports = router;
