@@ -52,7 +52,7 @@ exports.user_create_post = [
   body("password", "Password required").isLength({ min: 1 }).escape(),
   body("confirmPassword", "confirmPassword required").custom(
     (value, { req }) => {
-      if (value !== req.body.username) {
+      if (value !== req.body.password) {
         throw new Error("Password confirmation does not match password");
       }
       return true;
