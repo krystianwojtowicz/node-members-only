@@ -50,7 +50,14 @@ exports.user_create_post = [
   // Validate and sanitize the name field.
   body("username", "Username required").trim().isLength({ min: 1 }).escape(),
   body("password", "Password required").isLength({ min: 1 }).escape(),
-
+  body("confirmPassword", "confirmPassword required").custom(
+    (value, { req }) => {
+      if (value !== req.body.username) {
+        throw new Error("Password confirmation does not match password");
+      }
+      return true;
+    }
+  ),
   // Process request after validation and sanitization.
   (req, res, next) => {
     // Extract the validation errors from a request.
@@ -61,6 +68,7 @@ exports.user_create_post = [
     const user = new User({
       username: req.body.username,
       password: hash,
+      confirmPassword: req.body.confirmPassword,
       member: req.body.member,
       admin: req.body.admin,
     });
