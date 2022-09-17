@@ -26,6 +26,7 @@ exports.index = (req, res) => {
         title: "Members only",
         error: err,
         data: results,
+        user: req.user,
       });
     }
   );
