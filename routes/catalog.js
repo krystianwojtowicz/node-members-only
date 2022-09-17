@@ -13,6 +13,8 @@ router.get("/user/create", user_controller.user_create_get);
 router.post("/user/create", user_controller.user_create_post);
 router.get("/joining", auth_controller.club_joining_get);
 router.post("/joining", auth_controller.club_joining_post);
+router.get("/login", user_controller.user_login_get);
+router.post("/login", user_controller.login_post);
 
 /// ------------------------------ CREATE A MESSAGE ------------------------------ ///
 router.get("/message/create", message_controller.message_create_get);

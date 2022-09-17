@@ -2,6 +2,7 @@ const User = require("../models/user");
 const Message = require("../models/message");
 const { body, validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
+const passport = require("passport");
 
 // exports.index = (req, res) => {
 //   res.send("NOT IMPLEMENTED: Site Home Page");
@@ -106,3 +107,14 @@ exports.user_create_post = [
     }
   },
 ];
+
+// Display User create form on GET.
+exports.user_login_get = (req, res, next) => {
+  res.render("login", { title: "Log in" });
+};
+
+exports.login_post = passport.authenticate("local", {
+  successRedirect: "/",
+  failureRedirect: "/catalog/login",
+  // failureFlash: true
+});

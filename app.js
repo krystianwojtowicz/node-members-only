@@ -3,6 +3,7 @@ const session = require("express-session");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const bcrypt = require("bcryptjs");
+const User = require("./models/user");
 var createError = require("http-errors");
 var express = require("express");
 var path = require("path");
@@ -51,9 +52,11 @@ passport.use(
           // passwords do not match!
           return done(null, false, { message: "Incorrect password" });
         }
+        if (res) {
+          return done(null, user);
+        }
+        if (err) return done(err);
       });
-
-      return done(null, user);
     });
   })
 );
