@@ -14,8 +14,12 @@ block content
   if error
     p Error getting dynamic content.
   else
-    p The library has the following record counts:
+    p The club has the following record counts:
 
     ul
       li #[strong Users:] !{data.user_count}
       li #[strong Messages:] !{data.message_count}
+  
+  if(messages)
+   each message in messages
+    h1= message.title

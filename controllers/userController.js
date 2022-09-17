@@ -11,7 +11,7 @@ const passport = require("passport");
 
 const async = require("async");
 
-exports.index = (req, res) => {
+exports.index = (req, res, next) => {
   async.parallel(
     {
       user_count(callback) {
@@ -21,12 +21,15 @@ exports.index = (req, res) => {
         Message.countDocuments({}, callback); // Pass an empty object as match condition to find all documents of this collection
       },
     },
-    (err, results) => {
+
+    async (err, results) => {
+      const messages = await Message.find();
       res.render("index", {
         title: "Members only",
         error: err,
         data: results,
         user: req.user,
+        messages: messages,
       });
     }
   );
