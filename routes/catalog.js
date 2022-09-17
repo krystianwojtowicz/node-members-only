@@ -12,6 +12,7 @@ router.get("/", user_controller.index);
 router.get("/user/create", user_controller.user_create_get);
 router.post("/user/create", user_controller.user_create_post);
 router.get("/joining", auth_controller.club_joining_get);
+router.post("/joining", auth_controller.club_joining_post);
 
 /// ------------------------------ CREATE A MESSAGE ------------------------------ ///
 router.get("/message/create", message_controller.message_create_get);

@@ -6,7 +6,7 @@ block content
   form(method='POST' action='')
     div.form-group
       label(for='code') Code:
-      input#code.form-control(type='text', placeholder='Krystian etc.' name='code' value=(undefined===user ? '' : user.code))
+      input#code.form-control(type='text', placeholder='code' name='code')
     button.btn.btn-primary(type='submit') Submit
 
   if errors
