@@ -49,6 +49,7 @@ exports.message_create_post = [
   },
 ];
 
+// Ostatnio dodane
 // Handle Message delete on POST.
 exports.delete_message_post = (req, res, next) => {
   // Remove the message using the id from the database
@@ -57,6 +58,7 @@ exports.delete_message_post = (req, res, next) => {
     res.redirect("/");
   });
 };
+// Ostatnio dodane
 
 // // Handle Message delete on POST.
 // exports.delete_message_post = (req, res, next) => {
