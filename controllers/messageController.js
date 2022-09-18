@@ -49,23 +49,23 @@ exports.message_create_post = [
   },
 ];
 
-// // Handle Message delete on POST.
-// exports.delete_message_post = (req, res, next) => {
-//   // Remove the message using the id from the database
-//   Message.findByIdAndRemove(req.body.messageId, function deleteMessage(err) {
-//     if (err) return next(err);
-//     res.redirect("/");
-//   });
-// };
-
 // Handle Message delete on POST.
 exports.delete_message_post = (req, res, next) => {
   // Remove the message using the id from the database
-  Message.findOneAndDelete(
-    { _id: "6326e7dd7700486c1e27c901" }
-    // function deleteMessage(err) {
-    //   if (err) return next(err);
-    //   res.redirect("/");
-    // }
-  );
+  Message.findByIdAndRemove(req.body.messageId, function deleteMessage(err) {
+    if (err) return next(err);
+    res.redirect("/");
+  });
 };
+
+// // Handle Message delete on POST.
+// exports.delete_message_post = (req, res, next) => {
+//   // Remove the message using the id from the database
+//   Message.findOneAndDelete(
+//     { _id: "6326e7dd7700486c1e27c901" }
+//     // function deleteMessage(err) {
+//     //   if (err) return next(err);
+//     //   res.redirect("/");
+//     // }
+//   );
+// };
