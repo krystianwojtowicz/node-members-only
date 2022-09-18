@@ -1,13 +1,12 @@
 var express = require("express");
 var router = express.Router();
-// const auth_controller = require("../controllers/authController");
-// const index_controller = require("../controllers/indexController");
 const message_controller = require("../controllers/messageController");
 const user_controller = require("../controllers/userController");
 const auth_controller = require("../controllers/authController");
 
 // GET catalog home page.
 router.get("/", user_controller.index);
+router.post("/", message_controller.delete_message_post);
 /// ------------------------------ BECOME A MEMBER ------------------------------ ///
 router.get("/user/create", user_controller.user_create_get);
 router.post("/user/create", user_controller.user_create_post);
