@@ -1,5 +1,6 @@
 const Message = require("../models/message");
 const { body, validationResult } = require("express-validator");
+const { DateTime } = require("luxon");
 
 // Display Message create form on GET.
 exports.message_create_get = (req, res, next) => {
@@ -35,6 +36,7 @@ exports.message_create_post = [
 
     const message = new Message({
       user: req.user._id,
+      username: req.user.username,
       title: req.body.messageTitle,
       text: req.body.messageText,
       timestamp: Date.now(),

@@ -23,14 +23,18 @@ exports.index = (req, res, next) => {
     },
 
     async (err, results) => {
-      const messages = await Message.find();
-      res.render("index", {
-        title: "Members only",
-        error: err,
-        data: results,
-        user: req.user,
-        messages: messages,
-      });
+      try {
+        const messages = await Message.find();
+        return res.render("index", {
+          title: "Members only",
+          error: err,
+          data: results,
+          user: req.user,
+          messages: messages,
+        });
+      } catch (err) {
+        return next(err);
+      }
     }
   );
 };

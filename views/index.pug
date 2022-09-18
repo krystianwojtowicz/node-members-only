@@ -20,6 +20,17 @@ block content
       li #[strong Users:] !{data.user_count}
       li #[strong Messages:] !{data.message_count}
   
-  if(messages)
+  if(user && user.member && messages)
+   h1 Messages
    each message in messages
     h1= message.title
+    p= message.text
+    p #{message.username}
+    p= message.date
+  else if (messages)
+   h1 Messages
+   each message in messages
+    h1= message.title
+    p= message.text
+    p #{message.user}
+    
