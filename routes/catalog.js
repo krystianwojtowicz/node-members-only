@@ -16,6 +16,10 @@ router.post("/joining", auth_controller.club_joining_post);
 router.get("/login", user_controller.user_login_get);
 router.post("/login", user_controller.login_post);
 
+/// ------------------------------ BECOME AN ADMIN ------------------------------ ///
+router.get("/admin", auth_controller.admin_get);
+router.post("/admin", auth_controller.admin_post);
+
 /// ------------------------------ CREATE A MESSAGE ------------------------------ ///
 router.get("/message/create", message_controller.message_create_get);
 router.post("/message/create", message_controller.message_create_post);

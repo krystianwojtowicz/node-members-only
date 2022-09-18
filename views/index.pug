@@ -7,7 +7,7 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #[em Members only], a very basic Express website developed as a tutorial example on the Mozilla Developer Network.
+  p Welcome to #[em Members only].
 
   h1 Dynamic content
 
@@ -32,5 +32,4 @@ block content
    each message in messages
     h1= message.title
     p= message.text
-    p #{message.user}
     
