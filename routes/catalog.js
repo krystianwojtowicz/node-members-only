@@ -9,6 +9,7 @@ router.get("/", user_controller.index);
 // Ostatnio dodane
 router.post("/", message_controller.delete_message_post);
 // Ostatnio dodane
+router.get("/log-out", user_controller.logout_get);
 /// ------------------------------ BECOME A MEMBER ------------------------------ ///
 router.get("/user/create", user_controller.user_create_get);
 router.post("/user/create", user_controller.user_create_post);

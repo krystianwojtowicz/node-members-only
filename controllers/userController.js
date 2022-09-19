@@ -126,3 +126,14 @@ exports.login_post = passport.authenticate("local", {
   failureRedirect: "/catalog/login",
   // failureFlash: true
 });
+
+exports.logout_get =
+  ("/log-out",
+  (req, res, next) => {
+    req.logout(function (err) {
+      if (err) {
+        return next(err);
+      }
+      res.redirect("/");
+    });
+  });
